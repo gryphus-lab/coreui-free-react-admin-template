@@ -1,4 +1,4 @@
-name: ci.yml
+name: CI workflow fof React App
 
 permissions:
   contents: read
