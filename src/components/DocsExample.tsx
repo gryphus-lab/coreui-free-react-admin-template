@@ -4,7 +4,7 @@ import { CNav, CNavItem, CNavLink, CTabContent, CTabPane } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilCode, cilMediaPlay } from '@coreui/icons'
 
-const DocsExample = (props) => {
+const DocsExample = (props: { children: any; href: any; tabContentClassName: any }) => {
   const { children, href, tabContentClassName } = props
 
   const _href = `https://coreui.io/react/docs/${href}`
@@ -25,7 +25,7 @@ const DocsExample = (props) => {
           </CNavLink>
         </CNavItem>
       </CNav>
-      <CTabContent className={`rounded-bottom ${tabContentClassName ? tabContentClassName : ''}`}>
+      <CTabContent className={`rounded-bottom ${tabContentClassName || ''}`}>
         <CTabPane className="p-3 preview" visible>
           {children}
         </CTabPane>

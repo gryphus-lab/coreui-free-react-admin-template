@@ -52,5 +52,3 @@ jobs:
 
       - name: Run docker build
         run: mise docker-build
-
-

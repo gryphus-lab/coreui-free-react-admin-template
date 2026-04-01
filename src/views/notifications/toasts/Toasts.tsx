@@ -12,7 +12,7 @@ import {
   CToastHeader,
   CToaster,
 } from '@coreui/react'
-import { DocsComponents, DocsExample } from 'src/components'
+import { DocsComponents, DocsExample } from '../../../components'
 
 const ExampleToast = () => {
   const [toast, addToast] = useState(0)
@@ -239,7 +239,7 @@ const Toasts = () => {
               >
                 <div className="d-flex">
                   <CToastBody>Hello, world! This is a toast message.</CToastBody>
-                  <CToastClose className="me-2 m-auto" white />
+                  <CToastClose className="me-2 m-auto" />
                 </div>
               </CToast>
             </DocsExample>
