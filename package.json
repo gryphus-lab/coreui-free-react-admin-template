@@ -14,7 +14,8 @@
   "author": "The CoreUI Team (https://github.com/orgs/coreui/people)",
   "scripts": {
     "build": "vite build",
-    "lint": "eslint",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "serve": "vite preview",
     "start": "vite",
     "prettier": "prettier --write .",
@@ -59,5 +60,6 @@
     "typescript": "^6.0.2",
     "vite": "^8.0.3"
   },
-  "type": "module"
+  "type": "module",
+  "packageManager": "yarn@4.13.0"
 }
