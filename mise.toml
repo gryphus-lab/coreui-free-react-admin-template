@@ -1,0 +1,31 @@
+# mise.toml
+[tools]
+node = "24"
+yarn = "4.13.0"
+
+# ────────────────────────────────────────
+# Environment (activated repo-wide)
+# ────────────────────────────────────────
+
+[env]
+#
+# ────────────────────────────────────────
+# Tasks (run from anywhere — mise uses root config)
+# ────────────────────────────────────────
+
+[tasks]
+setup = { run = "yarn install", description = "Install dependencies"}
+
+start = { run = "yarn start", description = "Start UI"}
+
+build = { run = "yarn build", description = "Build UI"}
+
+check = { run = [
+  "yarn lint",
+  "yarn prettier:check",
+], description = "Check using yarn lint/prettier" }
+fmt = { run = [
+  "yarn lint:fix",
+  "yarn prettier",
+], description = "Format using yarn lint/prettier" }
+
