@@ -14,11 +14,17 @@ yarn = "4.13.0"
 # ────────────────────────────────────────
 
 [tasks]
-setup = { run = "yarn install", description = "Install dependencies"}
+setup = { run = "yarn install", description = "Install dependencies" }
 
-start = { run = "yarn start", description = "Start UI"}
+start = { run = "yarn start", description = "Start UI" }
 
-build = { run = "yarn build", description = "Build UI"}
+build = { run = "yarn build", description = "Build UI" }
+
+docker-build = { run = "docker build --no-cache -t react-admin-app -f Dockerfile .", description = "Docker build" }
+
+compose-up = { run = "docker compose up -d", description = "Docker compose up" }
+compose-down = { run = "docker compose down", description = "Docker compose down - all services" }
+compose-down-full = { run = "docker compose down -v", description = "Docker compose down - all services and volumes" }
 
 check = { run = [
   "yarn lint",
