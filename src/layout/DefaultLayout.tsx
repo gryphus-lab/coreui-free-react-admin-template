@@ -35,7 +35,7 @@ import { AppContent, AppSidebar, AppFooter, AppHeader } from '../components/inde
  *
  * @returns {React.ReactElement} Complete application layout
  */
-const DefaultLayout = () => {
+const DefaultLayout = (): React.ReactElement => {
   return (
     <div>
       <AppSidebar />

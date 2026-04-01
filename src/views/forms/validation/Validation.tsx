@@ -16,11 +16,15 @@ import {
   CInputGroupText,
   CRow,
 } from '@coreui/react'
-import { DocsComponents, DocsExample } from 'src/components'
+import { DocsComponents, DocsExample } from '../../../components'
 
 const CustomStyles = () => {
   const [validated, setValidated] = useState(false)
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: {
+    currentTarget: any
+    preventDefault: () => void
+    stopPropagation: () => void
+  }) => {
     const form = event.currentTarget
     if (form.checkValidity() === false) {
       event.preventDefault()
@@ -97,7 +101,11 @@ const CustomStyles = () => {
 
 const BrowserDefaults = () => {
   const [validated, setValidated] = useState(false)
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: {
+    currentTarget: any
+    preventDefault: () => void
+    stopPropagation: () => void
+  }) => {
     const form = event.currentTarget
     if (form.checkValidity() === false) {
       event.preventDefault()
@@ -169,7 +177,11 @@ const BrowserDefaults = () => {
 
 const Tooltips = () => {
   const [validated, setValidated] = useState(false)
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: {
+    currentTarget: any
+    preventDefault: () => void
+    stopPropagation: () => void
+  }) => {
     const form = event.currentTarget
     if (form.checkValidity() === false) {
       event.preventDefault()

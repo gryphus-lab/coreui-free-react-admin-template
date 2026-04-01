@@ -74,7 +74,7 @@ import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
  *   name: 'Theme',
  * }
  */
-const _nav = [
+const _nav: Array<object> = [
   {
     component: CNavItem,
     name: 'Dashboard',

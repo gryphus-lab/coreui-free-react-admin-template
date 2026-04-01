@@ -15,7 +15,7 @@ import { CChartBar, CChartLine } from '@coreui/react-chartjs'
 import CIcon from '@coreui/icons-react'
 import { cilArrowBottom, cilArrowTop, cilOptions } from '@coreui/icons'
 
-const WidgetsDropdown = (props) => {
+const WidgetsDropdown = (props: { className: string | undefined }) => {
   const widgetChartRef1 = useRef(null)
   const widgetChartRef2 = useRef(null)
 
