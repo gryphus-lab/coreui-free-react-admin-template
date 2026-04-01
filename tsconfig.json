@@ -14,11 +14,11 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "noImplicitAny": true, // Disallow 'any' type
-    "strictNullChecks": true, // Null and undefined are not assignable to other types
-    "strictFunctionTypes": true, // Function parameters are contravariant
-    "noImplicitReturns": true, // All code paths must return a value
-    "noFallthroughCasesInSwitch": true // Switch statements need breaks
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true
   },
   "include": ["src"]
 }
