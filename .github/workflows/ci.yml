@@ -1,4 +1,4 @@
-name: CI workflow fof React App
+name: CI workflow with SonarQube for React App
 
 permissions:
   contents: read
@@ -46,6 +46,14 @@ jobs:
 
       - name: Install dependencies
         run: mise setup
+
+      - name: Run tests with coverage
+        run: mise test-coverage
+
+      - name: Run SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v7
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: Run build
         run: mise build
