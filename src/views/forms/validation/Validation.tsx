@@ -18,11 +18,14 @@ import {
 } from '@coreui/react'
 import { DocsComponents, DocsExample } from '../../../components'
 
-function checkAndSetValidated(event: {
-  currentTarget: any;
-  preventDefault: () => void;
-  stopPropagation: () => void
-}, setValidated: (value: (((prevState: boolean) => boolean) | boolean)) => void) {
+function checkAndSetValidated(
+  event: {
+    currentTarget: any
+    preventDefault: () => void
+    stopPropagation: () => void
+  },
+  setValidated: (value: ((prevState: boolean) => boolean) | boolean) => void,
+) {
   const form = event.currentTarget
   if (form.checkValidity() === false) {
     event.preventDefault()
@@ -114,7 +117,7 @@ const BrowserDefaults = () => {
     preventDefault: () => void
     stopPropagation: () => void
   }) => {
-    checkAndSetValidated(event,setValidated)
+    checkAndSetValidated(event, setValidated)
   }
   return (
     <CForm className="row g-3 needs-validation" validated={validated} onSubmit={handleSubmit}>

@@ -129,9 +129,7 @@ const AppHeader = () => {
             <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
           </li>
           <CDropdown variant="nav-item" placement="bottom-end">
-            <CDropdownToggle caret={false}>
-              {getCDropdownToggle(colorMode)}
-            </CDropdownToggle>
+            <CDropdownToggle caret={false}>{getCDropdownToggle(colorMode)}</CDropdownToggle>
             <CDropdownMenu>
               <CDropdownItem
                 active={colorMode === 'light'}
