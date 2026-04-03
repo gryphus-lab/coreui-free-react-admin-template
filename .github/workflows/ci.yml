@@ -50,13 +50,13 @@ jobs:
       - name: Run tests with coverage
         run: mise test-coverage
 
+      - name: Run SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v7
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
       - name: Run build
         run: mise build
 
       - name: Run docker build
         run: mise docker-build
-
-      - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v7
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
