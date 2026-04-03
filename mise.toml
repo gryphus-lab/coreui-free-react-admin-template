@@ -18,6 +18,10 @@ setup = { run = "yarn install", description = "Install dependencies" }
 
 start = { run = "yarn start", description = "Start UI" }
 
+test = { run = "yarn test:run", description = "Run tests" }
+
+test-coverage = { run = "yarn test:coverage", description = "Run tests with coverage report" }
+
 build = { run = "yarn build", description = "Build UI" }
 
 docker-build = { run = "docker build --no-cache -t react-admin-app -f Dockerfile .", description = "Docker build" }

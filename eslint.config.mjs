@@ -1,6 +1,7 @@
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 import eslintPluginReact from 'eslint-plugin-react'
 import eslintPluginReactHooks from 'eslint-plugin-react-hooks'
+import eslintPluginVitest from 'eslint-plugin-vitest'
 import globals from 'globals'
 import tseslint from 'typescript-eslint'
 
@@ -51,6 +52,20 @@ export default tseslint.config(
         'warn',
         { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
       ],
+    },
+  },
+  {
+    files: ['src/**/*.{test,spec}.{ts,tsx}'],
+    plugins: {
+      vitest: eslintPluginVitest,
+    },
+    rules: {
+      ...eslintPluginVitest.configs.recommended.rules,
+    },
+    languageOptions: {
+      globals: {
+        ...eslintPluginVitest.environments.env.globals,
+      },
     },
   },
   eslintPluginPrettierRecommended,
