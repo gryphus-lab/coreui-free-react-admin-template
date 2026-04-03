@@ -12,6 +12,14 @@ import {
 } from '@coreui/react'
 import { DocsComponents, DocsExample } from '../../../components'
 
+type CListHorizontalLayout =
+  | 'horizontal'
+  | 'horizontal-sm'
+  | 'horizontal-md'
+  | 'horizontal-lg'
+  | 'horizontal-xl'
+  | 'horizontal-xxl'
+
 const ListGroups = () => {
   return (
     <CRow>
@@ -155,8 +163,12 @@ const ListGroups = () => {
               <strong>horizontal list groups cannot be combined with flush list groups.</strong>
             </p>
             <DocsExample href="components/list-group/#flush">
-              {['', '-sm', '-md', '-lg', '-xl', '-xxl'].map((breakpoint, index) => (
-                <CListGroup className="mb-2" layout={`horizontal${breakpoint}`} key={index}>
+              {(['', '-sm', '-md', '-lg', '-xl', '-xxl'] as const).map((breakpoint, index) => (
+                <CListGroup
+                  className="mb-2"
+                  layout={`horizontal${breakpoint}` as CListHorizontalLayout}
+                  key={index}
+                >
                   <CListGroupItem>Cras justo odio</CListGroupItem>
                   <CListGroupItem>Dapibus ac facilisis in</CListGroupItem>
                   <CListGroupItem>Morbi leo risus</CListGroupItem>

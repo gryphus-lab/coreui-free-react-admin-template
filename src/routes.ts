@@ -13,7 +13,14 @@
  * @module routes
  */
 
-import React from 'react'
+import React, { type ComponentType, type LazyExoticComponent } from 'react'
+
+export type AppRoute = {
+  path?: string
+  exact?: boolean
+  name?: string
+  element?: LazyExoticComponent<ComponentType>
+}
 
 // Dashboard
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
@@ -86,7 +93,7 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
  * // Route with exact match required
  * { path: '/base', name: 'Base', element: Cards, exact: true }
  */
-export const routes: Array<object> = [
+export const routes: AppRoute[] = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },

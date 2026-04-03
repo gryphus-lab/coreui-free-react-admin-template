@@ -4,7 +4,13 @@ import { CNav, CNavItem, CNavLink, CTabContent, CTabPane } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilCode, cilMediaPlay } from '@coreui/icons'
 
-const DocsExample = (props: { children: any; href: any; tabContentClassName: any }) => {
+type DocsExampleProps = {
+  children: React.ReactNode
+  href: string
+  tabContentClassName?: string
+}
+
+const DocsExample = (props: DocsExampleProps) => {
   const { children, href, tabContentClassName } = props
 
   const _href = `https://coreui.io/react/docs/${href}`

@@ -18,6 +18,22 @@ import {
 } from '@coreui/react'
 import { DocsComponents, DocsExample } from '../../../components'
 
+function checkAndSetValidated(
+  event: {
+    currentTarget: any
+    preventDefault: () => void
+    stopPropagation: () => void
+  },
+  setValidated: (value: ((prevState: boolean) => boolean) | boolean) => void,
+) {
+  const form = event.currentTarget
+  if (form.checkValidity() === false) {
+    event.preventDefault()
+    event.stopPropagation()
+  }
+  setValidated(true)
+}
+
 const CustomStyles = () => {
   const [validated, setValidated] = useState(false)
   const handleSubmit = (event: {
@@ -25,12 +41,7 @@ const CustomStyles = () => {
     preventDefault: () => void
     stopPropagation: () => void
   }) => {
-    const form = event.currentTarget
-    if (form.checkValidity() === false) {
-      event.preventDefault()
-      event.stopPropagation()
-    }
-    setValidated(true)
+    checkAndSetValidated(event, setValidated)
   }
   return (
     <CForm
@@ -106,12 +117,7 @@ const BrowserDefaults = () => {
     preventDefault: () => void
     stopPropagation: () => void
   }) => {
-    const form = event.currentTarget
-    if (form.checkValidity() === false) {
-      event.preventDefault()
-      event.stopPropagation()
-    }
-    setValidated(true)
+    checkAndSetValidated(event, setValidated)
   }
   return (
     <CForm className="row g-3 needs-validation" validated={validated} onSubmit={handleSubmit}>
@@ -182,12 +188,7 @@ const Tooltips = () => {
     preventDefault: () => void
     stopPropagation: () => void
   }) => {
-    const form = event.currentTarget
-    if (form.checkValidity() === false) {
-      event.preventDefault()
-      event.stopPropagation()
-    }
-    setValidated(true)
+    checkAndSetValidated(event, setValidated)
   }
   return (
     <CForm

@@ -1,16 +1,21 @@
-import React, { useEffect, useState, createRef } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { CRow, CCol, CCard, CCardHeader, CCardBody } from '@coreui/react'
 import { rgbToHex } from '@coreui/utils'
-import { DocsLink } from 'src/components'
+import { DocsLink } from '../../../components'
 
 const ThemeView = () => {
   const [color, setColor] = useState('rgb(255, 255, 255)')
-  const ref = createRef()
+  const ref = useRef<HTMLTableElement>(null)
 
   useEffect(() => {
-    const el = ref.current.parentNode.firstChild
+    const table = ref.current
+    const parent = table?.parentNode
+    const el = parent?.firstChild
+    if (!(el instanceof Element)) {
+      return
+    }
     const varColor = window.getComputedStyle(el).getPropertyValue('background-color')
     setColor(varColor)
   }, [ref])
@@ -31,7 +36,12 @@ const ThemeView = () => {
   )
 }
 
-const ThemeColor = ({ className, children }) => {
+type ThemeColorProps = {
+  className?: string
+  children?: React.ReactNode
+}
+
+const ThemeColor = ({ className, children }: ThemeColorProps) => {
   const classes = classNames(className, 'theme-color w-75 rounded mb-3')
   return (
     <CCol xs={12} sm={6} md={4} xl={2} className="mb-4">

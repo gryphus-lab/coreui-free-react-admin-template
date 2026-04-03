@@ -23,7 +23,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { CContainer, CSpinner } from '@coreui/react'
 
 // routes config
-import { routes } from '../routes'
+import { routes, type AppRoute } from '../routes'
 
 /**
  * AppContent functional component
@@ -42,16 +42,11 @@ const AppContent = () => {
     <CContainer className="px-4" lg>
       <Suspense fallback={<CSpinner color="primary" />}>
         <Routes>
-          {routes.map((route, idx) => {
+          {routes.map((route: AppRoute, idx: number) => {
             return (
-              route.element && (
-                <Route
-                  key={idx}
-                  path={route.path}
-                  exact={route.exact}
-                  name={route.name}
-                  element={<route.element />}
-                />
+              route.element &&
+              route.path !== undefined && (
+                <Route key={idx} path={route.path} element={<route.element />} />
               )
             )
           })}

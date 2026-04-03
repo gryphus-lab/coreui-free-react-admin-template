@@ -20,7 +20,7 @@
 
 import React, { useEffect, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import { useAppDispatch, useAppSelector } from '../hooks'
 import {
   CContainer,
   CDropdown,
@@ -48,6 +48,16 @@ import {
 import { AppBreadcrumb } from './index'
 import { AppHeaderDropdown } from './header/index'
 
+function getCDropdownToggle(colorMode: string | undefined) {
+  if (colorMode === 'dark') {
+    return <>{<CIcon icon={cilMoon} size="lg" />}</>
+  } else if (colorMode === 'auto') {
+    return <>{<CIcon icon={cilContrast} size="lg" />}</>
+  } else {
+    return <>{<CIcon icon={cilSun} size="lg" />}</>
+  }
+}
+
 /**
  * AppHeader functional component
  *
@@ -60,16 +70,15 @@ import { AppHeaderDropdown } from './header/index'
  * @returns {React.ReactElement} Header component with navigation and controls
  */
 const AppHeader = () => {
-  const headerRef = useRef()
+  const headerRef = useRef<HTMLDivElement | null>(null)
   const { colorMode, setColorMode } = useColorModes('coreui-free-react-admin-template-theme')
 
-  const dispatch = useDispatch()
-  const sidebarShow = useSelector((state) => state.sidebarShow)
+  const dispatch = useAppDispatch()
+  const sidebarShow = useAppSelector((state) => state.sidebarShow)
 
   useEffect(() => {
     const handleScroll = () => {
-      headerRef.current &&
-        headerRef.current.classList.toggle('shadow-sm', document.documentElement.scrollTop > 0)
+      headerRef.current?.classList.toggle('shadow-sm', document.documentElement.scrollTop > 0)
     }
 
     document.addEventListener('scroll', handleScroll)
@@ -120,15 +129,7 @@ const AppHeader = () => {
             <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
           </li>
           <CDropdown variant="nav-item" placement="bottom-end">
-            <CDropdownToggle caret={false}>
-              {colorMode === 'dark' ? (
-                <CIcon icon={cilMoon} size="lg" />
-              ) : colorMode === 'auto' ? (
-                <CIcon icon={cilContrast} size="lg" />
-              ) : (
-                <CIcon icon={cilSun} size="lg" />
-              )}
-            </CDropdownToggle>
+            <CDropdownToggle caret={false}>{getCDropdownToggle(colorMode)}</CDropdownToggle>
             <CDropdownMenu>
               <CDropdownItem
                 active={colorMode === 'light'}
