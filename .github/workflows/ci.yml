@@ -1,4 +1,4 @@
-name: CI workflow fof React App
+name: CI workflow with SonarQube for React App
 
 permissions:
   contents: read
@@ -55,3 +55,8 @@ jobs:
 
       - name: Run docker build
         run: mise docker-build
+
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v7
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
