@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, type ComponentProps } from 'react'
 import {
   CCard,
   CCardHeader,
@@ -14,9 +14,11 @@ import {
 } from '@coreui/react'
 import { DocsComponents, DocsExample } from '../../../components'
 
+type ToastPush = ComponentProps<typeof CToaster>['push']
+
 const ExampleToast = () => {
-  const [toast, addToast] = useState(0)
-  const toaster = useRef()
+  const [toast, setToast] = useState<ToastPush>(undefined)
+  const toaster = useRef<HTMLDivElement>(null)
   const exampleToast = (
     <CToast>
       <CToastHeader closeButton>
@@ -39,7 +41,7 @@ const ExampleToast = () => {
   )
   return (
     <>
-      <CButton color="primary" onClick={() => addToast(exampleToast)}>
+      <CButton color="primary" onClick={() => setToast(exampleToast)}>
         Send a toast
       </CButton>
       <CToaster ref={toaster} push={toast} placement="top-end" />

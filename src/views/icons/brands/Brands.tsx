@@ -8,7 +8,9 @@ const toKebabCase = (str: string) => {
   return str.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1-$2').toLowerCase()
 }
 
-export const getIconsView = (icons: typeof brandSet) => {
+type AnyIconSet = Record<string, React.ComponentProps<typeof CIcon>['icon']>
+
+export const getIconsView = (icons: AnyIconSet) => {
   return Object.entries(icons).map(([name, value]) => (
     <CCol className="mb-5" xs={6} sm={4} md={3} xl={2} key={name}>
       <CIcon icon={value} size="xxl" />

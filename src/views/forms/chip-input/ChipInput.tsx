@@ -51,7 +51,7 @@ const ChipInput = () => {
                 placeholder="Add label..."
                 defaultValue={['Feature', 'Approved', 'Needs review', 'Blocking']}
                 chipClassName={(value) => {
-                  const colorMap = {
+                  const colorMap: Record<string, string> = {
                     Feature: 'chip-primary',
                     Approved: 'chip-success',
                     'Needs review': 'chip-warning',

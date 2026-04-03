@@ -20,7 +20,7 @@
 
 import React, { useEffect, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import { useAppDispatch, useAppSelector } from '../hooks'
 import {
   CContainer,
   CDropdown,
@@ -70,11 +70,11 @@ function getCDropdownToggle(colorMode: string | undefined) {
  * @returns {React.ReactElement} Header component with navigation and controls
  */
 const AppHeader = () => {
-  const headerRef = useRef()
+  const headerRef = useRef<HTMLDivElement | null>(null)
   const { colorMode, setColorMode } = useColorModes('coreui-free-react-admin-template-theme')
 
-  const dispatch = useDispatch()
-  const sidebarShow = useSelector((state) => state.sidebarShow)
+  const dispatch = useAppDispatch()
+  const sidebarShow = useAppSelector((state) => state.sidebarShow)
 
   useEffect(() => {
     const handleScroll = () => {

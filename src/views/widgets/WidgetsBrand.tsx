@@ -5,7 +5,7 @@ import CIcon from '@coreui/icons-react'
 import { cibFacebook, cibLinkedin, cibTwitter, cilCalendar } from '@coreui/icons'
 import { CChart } from '@coreui/react-chartjs'
 
-const WidgetsBrand = (props: { className: string | undefined; withCharts: any }) => {
+const WidgetsBrand = (props: { className?: string; withCharts?: boolean }) => {
   const chartOptions = {
     elements: {
       line: {
@@ -65,9 +65,11 @@ const WidgetsBrand = (props: { className: string | undefined; withCharts: any })
             { title: 'friends', value: '89K' },
             { title: 'feeds', value: '459' },
           ]}
-          style={{
-            '--cui-card-cap-bg': '#3b5998',
-          }}
+          style={
+            {
+              '--cui-card-cap-bg': '#3b5998',
+            } as React.CSSProperties
+          }
         />
       </CCol>
       <CCol sm={6} xl={4} xxl={3}>
@@ -99,9 +101,11 @@ const WidgetsBrand = (props: { className: string | undefined; withCharts: any })
             { title: 'followers', value: '973k' },
             { title: 'tweets', value: '1.792' },
           ]}
-          style={{
-            '--cui-card-cap-bg': '#00aced',
-          }}
+          style={
+            {
+              '--cui-card-cap-bg': '#00aced',
+            } as React.CSSProperties
+          }
         />
       </CCol>
       <CCol sm={6} xl={4} xxl={3}>
@@ -133,9 +137,11 @@ const WidgetsBrand = (props: { className: string | undefined; withCharts: any })
             { title: 'contacts', value: '500' },
             { title: 'feeds', value: '1.292' },
           ]}
-          style={{
-            '--cui-card-cap-bg': '#4875b4',
-          }}
+          style={
+            {
+              '--cui-card-cap-bg': '#4875b4',
+            } as React.CSSProperties
+          }
         />
       </CCol>
       <CCol sm={6} xl={4} xxl={3}>

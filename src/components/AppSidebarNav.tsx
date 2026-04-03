@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { type ReactNode } from 'react'
 import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
@@ -7,8 +7,27 @@ import 'simplebar-react/dist/simplebar.min.css'
 
 import { CBadge, CNavLink, CSidebarNav } from '@coreui/react'
 
-export const AppSidebarNav = ({ items }) => {
-  const navLink = (name, icon, badge, indent = false) => {
+export type NavConfigItem = {
+  component: React.ElementType
+  name?: string
+  icon?: ReactNode
+  badge?: { color: string; text: string }
+  to?: string
+  href?: string
+  items?: NavConfigItem[]
+}
+
+type AppSidebarNavProps = {
+  items: NavConfigItem[]
+}
+
+export const AppSidebarNav = ({ items }: AppSidebarNavProps) => {
+  const navLink = (
+    name: string | undefined,
+    icon: ReactNode | undefined,
+    badge?: NavConfigItem['badge'],
+    indent = false,
+  ) => {
     return (
       <>
         {icon ||
@@ -27,11 +46,10 @@ export const AppSidebarNav = ({ items }) => {
     )
   }
 
-  const navItem = (item, index, indent = false) => {
-    const { component, name, badge, icon, ...rest } = item
-    const Component = component
+  const navItem = (item: NavConfigItem, index: number, indent = false) => {
+    const { component: NavComponent, name, badge, icon, ...rest } = item
     return (
-      <Component as="div" key={index}>
+      <NavComponent as="div" key={index}>
         {rest.to || rest.href ? (
           <CNavLink
             {...(rest.to && { as: NavLink })}
@@ -43,27 +61,24 @@ export const AppSidebarNav = ({ items }) => {
         ) : (
           navLink(name, icon, badge, indent)
         )}
-      </Component>
+      </NavComponent>
     )
   }
 
-  const navGroup = (item, index) => {
-    const { component, name, icon, items, to, ...rest } = item
-    const Component = component
+  const navGroup = (item: NavConfigItem, index: number) => {
+    const { component: NavComponent, name, icon, items: subItems, to: _to, ...rest } = item
     return (
-      <Component compact as="div" key={index} toggler={navLink(name, icon)} {...rest}>
-        {items?.map((item, index) =>
-          item.items ? navGroup(item, index) : navItem(item, index, true),
+      <NavComponent compact as="div" key={index} toggler={navLink(name, icon)} {...rest}>
+        {subItems?.map((subItem, subIndex) =>
+          subItem.items ? navGroup(subItem, subIndex) : navItem(subItem, subIndex, true),
         )}
-      </Component>
+      </NavComponent>
     )
   }
 
   return (
     <CSidebarNav as={SimpleBar}>
-      {items?.map((item: { items: any }, index: any) =>
-        item.items ? navGroup(item, index) : navItem(item, index),
-      )}
+      {items?.map((item, index) => (item.items ? navGroup(item, index) : navItem(item, index)))}
     </CSidebarNav>
   )
 }

@@ -9,14 +9,20 @@
 
 import { legacy_createStore as createStore } from 'redux'
 
+export interface RootState {
+  sidebarShow: boolean
+  sidebarUnfoldable: boolean
+  theme: string
+}
+
 /**
  * Initial state for the Redux store
- * @type {Object}
  * @property {boolean} sidebarShow - Controls sidebar visibility (true = visible, false = hidden)
  * @property {string} theme - Current theme mode ('light', 'dark', or 'auto')
  */
-const initialState: object = {
+const initialState: RootState = {
   sidebarShow: true,
+  sidebarUnfoldable: false,
   theme: 'light',
 }
 
@@ -41,7 +47,10 @@ const initialState: object = {
  * // Update multiple properties
  * dispatch({ type: 'set', sidebarShow: true, theme: 'light' })
  */
-const changeState = (state: object = initialState, { type, ...rest }: { type: string }): object => {
+const changeState = (
+  state: RootState = initialState,
+  { type, ...rest }: { type: string } & Partial<RootState>,
+): RootState => {
   if (type === 'set') {
     return { ...state, ...rest }
   } else {
@@ -51,7 +60,7 @@ const changeState = (state: object = initialState, { type, ...rest }: { type: st
 
 /**
  * Redux store instance
- * @type {import('redux').Store}
  */
-const store: import('redux').Store = createStore(changeState)
+const store = createStore(changeState)
+export type AppDispatch = typeof store.dispatch
 export default store

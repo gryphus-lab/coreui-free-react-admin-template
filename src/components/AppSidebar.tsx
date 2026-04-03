@@ -20,7 +20,8 @@
  */
 
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '../hooks'
 
 import {
   CCloseButton,
@@ -32,7 +33,7 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 
-import { AppSidebarNav } from './AppSidebarNav'
+import { AppSidebarNav, type NavConfigItem } from './AppSidebarNav'
 
 import { logo } from '../assets/brand/logo'
 import { sygnet } from '../assets/brand/sygnet'
@@ -53,9 +54,9 @@ import navigation from '../_nav'
  * @returns {React.ReactElement} Sidebar with navigation
  */
 const AppSidebar = () => {
-  const dispatch = useDispatch()
-  const unfoldable = useSelector((state) => state.sidebarUnfoldable)
-  const sidebarShow = useSelector((state) => state.sidebarShow)
+  const dispatch = useAppDispatch()
+  const unfoldable = useAppSelector((state) => state.sidebarUnfoldable)
+  const sidebarShow = useAppSelector((state) => state.sidebarShow)
 
   return (
     <CSidebar
@@ -69,7 +70,7 @@ const AppSidebar = () => {
       }}
     >
       <CSidebarHeader className="border-bottom">
-        <CSidebarBrand to="/">
+        <CSidebarBrand as={Link} to="/">
           <CIcon customClassName="sidebar-brand-full" icon={logo} height={32} />
           <CIcon customClassName="sidebar-brand-narrow" icon={sygnet} height={32} />
         </CSidebarBrand>
@@ -79,7 +80,7 @@ const AppSidebar = () => {
           onClick={() => dispatch({ type: 'set', sidebarShow: false })}
         />
       </CSidebarHeader>
-      <AppSidebarNav items={navigation} />
+      <AppSidebarNav items={navigation as NavConfigItem[]} />
       <CSidebarFooter className="border-top d-none d-lg-flex">
         <CSidebarToggler
           onClick={() => dispatch({ type: 'set', sidebarUnfoldable: !unfoldable })}
