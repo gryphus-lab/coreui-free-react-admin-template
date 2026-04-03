@@ -48,6 +48,16 @@ import {
 import { AppBreadcrumb } from './index'
 import { AppHeaderDropdown } from './header/index'
 
+function getCDropdownToggle(colorMode: string | undefined) {
+  if (colorMode === 'dark') {
+    return <>{<CIcon icon={cilMoon} size="lg" />}</>
+  } else if (colorMode === 'auto') {
+    return <>{<CIcon icon={cilContrast} size="lg" />}</>
+  } else {
+    return <>{<CIcon icon={cilSun} size="lg" />}</>
+  }
+}
+
 /**
  * AppHeader functional component
  *
@@ -68,8 +78,7 @@ const AppHeader = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      headerRef.current &&
-        headerRef.current.classList.toggle('shadow-sm', document.documentElement.scrollTop > 0)
+      headerRef.current?.classList.toggle('shadow-sm', document.documentElement.scrollTop > 0)
     }
 
     document.addEventListener('scroll', handleScroll)
@@ -121,13 +130,7 @@ const AppHeader = () => {
           </li>
           <CDropdown variant="nav-item" placement="bottom-end">
             <CDropdownToggle caret={false}>
-              {colorMode === 'dark' ? (
-                <CIcon icon={cilMoon} size="lg" />
-              ) : colorMode === 'auto' ? (
-                <CIcon icon={cilContrast} size="lg" />
-              ) : (
-                <CIcon icon={cilSun} size="lg" />
-              )}
+              {getCDropdownToggle(colorMode)}
             </CDropdownToggle>
             <CDropdownMenu>
               <CDropdownItem
