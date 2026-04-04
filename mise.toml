@@ -24,7 +24,8 @@ test-coverage = { run = "yarn test:coverage", description = "Run tests with cove
 
 build = { run = "yarn build", description = "Build UI" }
 
-docker-build = { run = "docker build --no-cache -t react-admin-app -f Dockerfile .", description = "Docker build" }
+docker-build = { run = "docker build --no-cache -t gryphus-lab/react-admin-app -f Dockerfile .", description = "Docker build" }
+docker-build-github = { run = "docker build -t gryphus-lab/react-admin-app:${{ github.sha }} -f ./Dockerfile .", description = "Docker build for Github" }
 
 compose-up = { run = "docker compose up -d", description = "Docker compose up" }
 compose-down = { run = "docker compose down", description = "Docker compose down - all services" }
@@ -34,7 +35,7 @@ check = { run = [
   "yarn lint",
   "yarn prettier:check",
 ], description = "Check using yarn lint/prettier" }
-fmt = { run = [
+format = { run = [
   "yarn lint:fix",
   "yarn prettier",
 ], description = "Format using yarn lint/prettier" }
