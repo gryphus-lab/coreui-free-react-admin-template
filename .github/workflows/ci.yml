@@ -62,19 +62,4 @@ jobs:
         run: mise build
 
       - name: Run docker build
-        run: docker build -t gryphus-lab/react-admin-app:${{ github.sha }} -f ./Dockerfile .
-
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@v0.35.0
-        with:
-          image-ref: 'gryphus-lab/react-admin-app:${{ github.sha }}'
-          format: 'template'
-          template: '@/contrib/sarif.tpl'
-          output: 'trivy-results.sarif'
-          severity: 'CRITICAL,HIGH'
-          scanners: 'vuln'
-
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v4
-        with:
-          sarif_file: 'trivy-results.sarif'
+        run: mise docker-build
