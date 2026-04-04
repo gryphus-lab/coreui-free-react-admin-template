@@ -59,10 +59,10 @@ jobs:
         run: mise build
 
       - name: Run docker build
-        run: mise docker-build-github
+        run: docker build -t gryphus-lab/react-admin-app:${{ github.sha }} -f ./Dockerfile .
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@7b7aa264d83dc58691451798b4d117d53d21edfe
+        uses: aquasecurity/trivy-action@v0.35.0
         with:
           image-ref: 'gryphus-lab/react-admin-app:${{ github.sha }}'
           format: 'template'
