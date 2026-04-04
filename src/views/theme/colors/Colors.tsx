@@ -16,7 +16,7 @@ const ThemeView = () => {
     if (!(el instanceof Element)) {
       return
     }
-    const varColor = window.getComputedStyle(el).getPropertyValue('background-color')
+    const varColor = globalThis.getComputedStyle(el).getPropertyValue('background-color')
     setColor(varColor)
   }, [ref])
 

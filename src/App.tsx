@@ -60,7 +60,7 @@ const App = (): React.ReactElement => {
   const storedTheme = useAppSelector((state) => state.theme)
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.href.split('?')[1])
+    const urlParams = new URLSearchParams(globalThis.location.href.split('?')[1])
     const themeMatch = urlParams.get('theme')?.match(/^[A-Za-z0-9\s]+/)
     const theme = themeMatch?.[0]
     if (theme) {
