@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { waitFor } from '@testing-library/react'
 import Validation from './Validation'
-import { renderWithProviders, resetStore } from 'src/test/test-utils'
+import { renderWithProviders, resetStore } from '../../../test/test-utils'
 
 describe('Validation', () => {
   beforeEach(() => {

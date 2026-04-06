@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { waitFor } from '@testing-library/react'
 import { AppSidebarNav, type NavConfigItem } from './AppSidebarNav'
 import navigation from '../_nav'
-import { renderWithProviders, resetStore } from 'src/test/test-utils'
+import { renderWithProviders, resetStore } from '../test/test-utils'
 
 describe('AppSidebarNav', () => {
   beforeEach(() => {
