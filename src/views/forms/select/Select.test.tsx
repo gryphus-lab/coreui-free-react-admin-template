@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { waitFor } from '@testing-library/react'
 import Select from './Select'
-import { renderWithProviders, resetStore } from 'src/test/test-utils'
+import { renderWithProviders, resetStore } from '../../../test/test-utils'
 
 describe('Select', () => {
   beforeEach(() => {
